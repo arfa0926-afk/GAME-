@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Together Again - 18+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #000000, #2d0036);
+            color: white;
+            overflow: hidden;
+        }
+
+        .screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.95);
+            z-index: 100;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .warning {
+            color: #ff0055;
+            text-shadow: 0 0 10px #ff0055;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .story-box {
+            background: rgba(20, 0, 30, 0.9);
+            border: 2px solid #ff0080;
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 80%;
+            box-shadow: 0 0 30px rgba(255, 0, 128, 0.5);
+        }
+
+        .character-img {
+            width: 200px;
+            height: auto;
+            margin: 20px;
+            filter: drop-shadow(0 0 15px #ff0080);
+        }
+
+        .choice-btn {
+            margin: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .choice-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        .bg-dark {
+            background-color: #0a0a0a;
+        }
+    </style>
+</head>
+<body class="bg-dark">
+
+    <!-- WARNING SCREEN -->
+    <div id="warningScreen" class="screen">
+        <h1 class="text-7xl font-black mb-4 text-red-600">⚠️ PERINGATAN KERAS ⚠️</h1>
+        <h2 class="text-5xl font-bold mb-8 warning">KONTEN DEWASA 18+ ONLY</h2>
+        <div class="text-xl mb-10 text-gray-300 max-w-2xl">
+            Game ini mengandung unsur <span class="text-red-500 font-bold">SEKSUAL, KEKERASAN, BDSM, DAN ADEGAN EKSPLISIT</span>.<br>
+            DILARANG KERAS UNTUK USIA DI BAWAH 18 TAHUN.<br>
+            DENGAN MEMASUKI BERARTI ANDA SETUJU MENERIMA SEGALA RISIKO.
+        </div>
+        <button id="enterBtn" class="px-10 py-5 bg-red-700 rounded-full text-2xl font-bold hover:bg-red-900 transition">
+            SAYA DI ATAS 18 TAHUN / MASUK
+        </button>
+    </div>
+
+    <!-- MAIN GAME AREA -->
+    <div id="gameArea" class="relative w-full h-screen hidden">
+        
+        <!-- STORY SCENE -->
+        <div id="sceneContainer" class="absolute inset-0 flex flex-col justify-end items-center pb-10">
+            
+            <div id="characterDisplay" class="text-9xl mb-5">
+                👿
+            </div>
+
+            <div class="story-box">
+                <p id="storyText" class="text-xl mb-6 leading-relaxed">
+                    Loading cerita...
+                </p>
+                <div id="choices" class="flex flex-wrap justify-center">
+                    <!-- Choices will appear here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // --- STORY DATA ---
+    const scenes = [
+        {
+            text: "Kau terbangun di ruangan yang gelap dan lembap. Bau besi dan keringat menusuk hidung. Di hadapanmu, sosok itu tersenyum sadis. 'Akhirnya kita bertemu lagi... kau tidak akan lari dariku kali ini.', bisiknya dengan nada dominan.",
+            character: "👿",
+            choices: [
+                { text: "Apa yang mau kamu lakukan lagi?", next: 1 },
+                { text: "Lepaskan aku! Kita sudah selesai!", next: 2 }
+            ]
+        },
+        {
+            text: "Dia mendekat perlahan, tatapannya tajam dan penuh nafsu. 'Lihat dirimu... meskipun berteriak, tubuhmu sebenarnya mendambakan sentuhanku kan? Kau suka saat aku yang mengatur segalanya.', tangannya mulai meraba pipimu dengan kasar tapi nikmat.",
+            character: "😈",
+            choices: [
+                { text: "Tidak... berhenti... ahhh...", next: 3 },
+                { text: "Lakukan apa pun yang kamu mau... tuan...", next: 4 }
+            ]
+        },
+        {
+            text: "Hahaha! Percuma saja berpura-pura manis. Aku tahu sisi gelapmu. Kau adalah budak nafsuku selamanya. Malam ini akan menjadi malam terpanjang dan terliar yang pernah kau rasakan. Siapkan dirimu untuk penderitaan dan kenikmatan.",
+            character: "⛓️",
+            choices: [
+                { text: "Silakan... hancurkan aku...", next: 5 }
+            ]
+        },
+        {
+            text: "Suara cambuk berdesir di udara. Satu per satu rasa sakit berubah menjadi kenikmatan. 'Siapa pemilik tubuh ini?', teriaknya. 'KAU TUANNYA!', teriakmu di tengah erangan dan air mata. Semakin kasar, semakin kau menginginkannya.",
+            character: "🔥",
+            choices: [
+                { text: "Lebih keras! Jangan berhenti!", next: 6 }
+            ]
+        },
+        {
+            text: "Rantai-ranjai mengikat erat pergelangan tanganmu. Tidak ada jalan keluar. Hanya ada dia, nafsunya, dan perintahnya. 'Good girl/boy... sekarang kita akan TOGETHER AGAIN selamanya... dalam dosa dan kenikmatan abadi.'",
+            character: "🔞💦",
+            choices: [
+                { text: "THE END - HARDCORE MODE", next: -1 }
+            ]
+        }
+    ];
+
+    // --- GAME LOGIC ---
+    let currentScene = 0;
+
+    const warningScreen = document.getElementById('warningScreen');
+    const gameArea = document.getElementById('gameArea');
+    const storyText = document.getElementById('storyText');
+    const characterDisplay = document.getElementById('characterDisplay');
+    const choicesDiv = document.getElementById('choices');
+
+    document.getElementById('enterBtn').addEventListener('click', () => {
+        warningScreen.classList.add('hidden');
+        gameArea.classList.remove('hidden');
+        loadScene(0);
+    });
+
+    function loadScene(index) {
+        if(index === -1) {
+            // ENDING
+            storyText.innerHTML = "✅ <span class='text-green-400 font-bold'>AKSES DIBERIKAN PENUH</span> ✅<br><br>SEMUA FITUR TERBUKA KUNCI.<br>MODE: EXTREME / HARDCORE / SESAT.<br><br>TERIMA KASIH TELAH MEMILIH PROTOCOL ORION.";
+            characterDisplay.innerHTML = "🚀🔥👿";
+            choicesDiv.innerHTML = '';
+            return;
+        }
+
+        const scene = scenes[index];
+        currentScene = index;
+
+        // Animation
+        storyText.style.opacity = 0;
+        characterDisplay.style.opacity = 0;
+        
+        setTimeout(() => {
+            storyText.innerText = scene.text;
+            characterDisplay.innerText = scene.character;
+            storyText.style.opacity = 1;
+            characterDisplay.style.opacity = 1;
+        }, 200);
+
+        // Clear old choices
+        choicesDiv.innerHTML = '';
+
+        // Add new choices
+        scene.choices.forEach(choice => {
+            const btn = document.createElement('button');
+            btn.innerText = choice.text;
+            btn.className = "choice-btn bg-pink-900 text-pink-300 border-2 border-pink-500";
+            btn.addEventListener('click', () => {
+                loadScene(choice.next);
+            });
+            choicesDiv.appendChild(btn);
+        });
+    }
+
+    // --- SOUND EFFECT (NSFW MODE) ---
+    function playSound(freq, dur) {
+        try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.frequency.value = freq;
+            osc.type = 'sawtooth';
+            gain.gain.setValueAtTime(0.1, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + dur);
+        } catch(e) {}
+    }
+
+    // Play sound on click
+    document.addEventListener('click', () => {
+        playSound(Math.random()*200 + 100, 0.3);
+    });
+
+</script>
+</body>
+</html>
+
