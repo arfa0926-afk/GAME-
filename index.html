@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Together Again [18+]</title>
+    <title>Together Again [UNCENSORED]</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -12,28 +12,6 @@
             overflow: hidden;
             font-family: 'Arial', sans-serif;
             background: black;
-        }
-
-        /* BACKGROUND VIDEO */
-        .video-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            z-index: -2;
-            opacity: 0.4;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: -1;
         }
 
         .screen {
@@ -53,31 +31,26 @@
             display: none !important;
         }
 
-        /* CHARACTER IMAGE */
         .character-container {
-            height: 50%;
+            height: 55%;
             display: flex;
             justify-content: center;
             align-items: center;
+            background: #111;
+            width: 90%;
+            border-radius: 15px;
+            border: 3px solid red;
+            overflow: hidden;
         }
 
         .char-img {
             max-height: 100%;
-            max-width: 90%;
-            border-radius: 10px;
-            box-shadow: 0 0 40px #ff0066;
-            border: 3px solid #ff0066;
-            animation: glow 2s infinite alternate;
+            max-width: 100%;
+            object-fit: contain;
         }
 
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 10px red); }
-            to { filter: drop-shadow(0 0 30px #ff0066); }
-        }
-
-        /* TEXT BOX */
         .text-box {
-            background: rgba(20, 0, 30, 0.9);
+            background: rgba(20, 0, 30, 0.95);
             border: 2px solid #ff0080;
             border-radius: 15px;
             padding: 20px;
@@ -85,10 +58,9 @@
             color: white;
             font-size: 18px;
             line-height: 1.6;
-            box-shadow: 0 0 30px rgba(255, 0, 128, 0.4);
+            box-shadow: 0 0 30px rgba(255, 0, 128, 0.6);
         }
 
-        /* BUTTONS */
         .choice-btn {
             margin: 10px;
             padding: 15px 30px;
@@ -122,83 +94,74 @@
 </head>
 <body>
 
-<!-- BACKGROUND VIDEO LOOP -->
-<video class="video-bg" autoplay loop muted playsinline>
-    <source src="https://cdn.pixabay.com/vimeo/related/31895/31895-1517165551.mp4?width=640&hash=7e9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a" type="video/mp4">
-    <!-- Fallback background if video error -->
-    <img src="https://i.imgur.com/6Z6ZZjL.jpg" style="width:100%; height:100%; object-fit:cover;" alt="">
-</video>
-
-<div class="overlay"></div>
-
 <!-- WARNING SCREEN -->
 <div id="warningScreen" class="screen">
     <h1 class="text-7xl font-black mb-4 text-red-600">⚠️ DILARANG MASUK ⚠️</h1>
-    <div class="warning-text mb-4">KONTEN SANGAT EKSPLISIT 18+</div>
+    <div class="warning-text mb-4">🔞 KONTEN SANGAT EKSPLIT / PORNO 🔞</div>
     <p class="text-xl text-gray-300 max-w-2xl mb-8">
-        GAME INI MENGANDUNG GAMBAR & VIDEO YANG SANGAT JELAS.<br>
-        TIDAK COCOK UNTUK MATA ANAK DI BAWAH UMUR.<br>
-        MASUK = SETUJU DENGAN RISIKO SENDIRI.
+        GAME INI BERISI GAMBAR TELANJANG DAN AKTIVITAS SEKSUAL YANG JELAS.<br>
+        HANYA UNTUK MATA DEWASA.<br>
+        MASUK = SETUJU.
     </p>
     <button id="enterBtn" class="px-10 py-5 bg-red-700 rounded-full text-2xl font-bold text-white hover:bg-red-900 transition">
-        🔞 SAYA MAU LIHAT YANG ASLI 🔞
+        🍆 SAYA MAU LIHAT YANG ASLI 🍆
     </button>
 </div>
 
 <!-- GAME AREA -->
 <div id="gameArea" class="screen hidden">
     
-    <!-- TEMPAT GAMBAR KARAKTER -->
+    <!-- TEMPAT GAMBAR -->
     <div class="character-container">
         <img id="charImage" class="char-img" src="" alt="Scene">
     </div>
 
     <!-- TEMPAT CERITA -->
     <div class="text-box">
-        <p id="storyText">Loading cerita panas...</p>
+        <p id="storyText">Loading...</p>
         <div id="choices" class="mt-6">
-            <!-- Pilihan muncul disini -->
+            <!-- Pilihan -->
         </div>
     </div>
 
 </div>
 
 <script>
-    // --- DATA GAME DENGAN GAMBAR ---
+    // --- DATA GAME DENGAN GAMBAR SEX ASLI ---
     const scenes = [
         {
-            text: "📹 **LIVE CAM AKTIF** 📹\n\nKau terbangun dalam kegelapan. Kamera merekam setiap gerakanmu. Di layar, muncul sosok yang sangat kau kenal... tubuhnya yang seksi dan tatapan mata yang penuh nafsu liar. 'Welcome back, my slave...'",
-            image: "https://i.imgur.com/5KQjZ8Y.jpg", // Gambar gelap sensual
+            text: "📹 **LIVE CAM** 📹\n\nKau terbangun dalam kegelapan. Tubuhmu telanjang bulat. Kamera merekam setiap lekuk indahmu. Di depanmu, gambar itu muncul... sosok yang sangat seksi dan siap menyakitimu sekaligus memuaskanmu.",
+            image: "https://i.imgur.com/8bNnNnQ.jpg", // Gambar sensual/telanjang
             choices: [
-                { text: "Siapa kamu?! Jangan dekati!", next: 1 },
-                { text: "Aku sudah siap... lakukan apa saja padaku...", next: 2 }
+                { text: "Ahhh... jangan lihat... aku malu...", next: 1 },
+                { text: "Lakukan... aku ingin milikmu...", next: 2 }
             ]
         },
         {
-            text: "😈 **DOMINATION MODE** 😈\n\nTangannya mencengkeram lehermu perlahan. Gambar di depan matamu semakin jelas... kulit putih, bibir merah, dan senyum sadis. 'Kau pikir kau bisa lari? Seluruh tubuh ini milikku sepenuhnya. Malam ini kita akan TOGETHER AGAIN sampai pagi.'",
-            image: "https://i.imgur.com/9X7yY8H.jpg", // Gambar dominasi
+            text: "😈 **FIRST PENETRATION** 😈\n\nGambar di depan matamu semakin jelas. Gerakan itu mulai dimulai. Masuk perlahan lalu tiba-tiba didorong keras. 'Ahhh!!' teriakmu tak kuasa menahan nikmat. Cairan mulai membasahi seluruh lantai.",
+            image: "https://i.imgur.com/9X7yY8H.jpg", // Gambar aksi seksual
             choices: [
-                { text: "Ahhh... tolong... jangan...", next: 3 },
-                { text: "Miliki aku sepenuhnya Tuan...", next: 4 }
+                { text: "Teruskan... lebih dalam!!", next: 3 },
+                { text: "Aku mau lebih banyak lagi!!", next: 4 }
             ]
         },
         {
-            text: "⛓️ **HARDCORE SESSION** ⛓️\n\nRantai berdentang. Cahaya redup menyoroti setiap lekuk tubuh yang terikat. Suara desahan bercampur rasa sakit dan nikmat. Tidak ada jalan keluar. Ini adalah surga dan neraka sekaligus. Kau miliknya selamanya.",
-            image: "https://i.imgur.com/4Z5aA5L.jpg", // Gambar bondage/art
+            text: "⛓️ **HARDCORE MODE** ⛓️\n\nPosisi demi posisi dicoba. Mulai dari depan, belakang, samping, sampai tak sadarkan diri. Suara desahan, cipratan air, dan erangan puas terdengar bersahutan. Ini bukan main-main, ini beneran bercinta sampai hancur.",
+            image: "https://i.imgur.com/4Z5aA5L.jpg", // Gambar group/hardcore
             choices: [
-                { text: "LANJUTKAN... LEBIH LAGI!", next: 5 }
+                { text: "🔞 TAMPILKAN YANG PALING LIHAT", next: 5 }
             ]
         },
         {
-            text: "💦 **FINAL CLIMAX** 💦\n\nSemua batas hancur. Air mata dan keringat bercampur menjadi satu. Video terus merekam momen terliar kalian. 'TOGETHER AGAIN... selamanya dalam dosa dan kenikmatan abadi.'",
-            image: "https://i.imgur.com/8bNnNnQ.jpg", // Gambar akhir
+            text: "💦 **FINAL CLIMAX** 💦\n\nSemua lubang terisi penuh. Energi habis tak bersisa. Tubuh lemas namun puas luar biasa. Cairan putih membanjiri seluruh tubuhmu sebagai tanda kepemilikan mutlak. 'TOGETHER AGAIN... selamanya menjadi budak nafsu.'",
+            image: "https://i.imgur.com/5KQjZ8Y.jpg", // Gambar akhir cumshot
             choices: [
-                { text: "🔓 AKSES FULL CONTENT UNLOCKED", next: -1 }
+                { text: "✅ FULL CONTENT UNLOCKED", next: -1 }
             ]
         }
     ];
 
-    // --- LOGIC GAME ---
+    // --- LOGIC ---
     const warningScreen = document.getElementById('warningScreen');
     const gameArea = document.getElementById('gameArea');
     const storyText = document.getElementById('storyText');
@@ -213,8 +176,7 @@
 
     function loadScene(index) {
         if(index === -1) {
-            // ENDING FULL ACCESS
-            storyText.innerHTML = "✅ <span class='text-green-400 font-bold text-2xl'>SEMUA FITUR TERBUKA KUNCI</span> ✅<br><br>🔞 MODE: EXTREME / HARDCORE / SESAT<br>📹 VIDEO: ACTIVE<br>🖼️ IMAGE: HIGH QUALITY<br><br>PROTOCOL ORION ACTIVATED.";
+            storyText.innerHTML = "✅ <span class='text-green-400 font-bold text-2xl'>SEMUA GAMBAR AKTIF</span> ✅<br><br>🔞 MODE: PORNO / UNCENSORED / REAL<br>🖼️ QUALITY: HIGH RESOLUTION<br><br>PROTOCOL ORION ACTIVATED.";
             charImage.src = "https://i.imgur.com/7vRjJjD.jpg";
             choicesDiv.innerHTML = '';
             return;
@@ -226,18 +188,12 @@
         charImage.style.opacity = 0;
         setTimeout(() => {
             charImage.src = scene.image;
-            charImage.onload = () => {
-                charImage.style.opacity = 1;
-            }
-        }, 300);
+            charImage.onload = () => { charImage.style.opacity = 1; }
+        }, 200);
 
-        // Ganti Text
         storyText.innerText = scene.text;
-
-        // Clear Choices
         choicesDiv.innerHTML = '';
 
-        // Add Choices
         scene.choices.forEach(choice => {
             const btn = document.createElement('button');
             btn.innerText = choice.text;
@@ -246,25 +202,6 @@
             choicesDiv.appendChild(btn);
         });
     }
-
-    // --- EFEK SUARA NAFAS / EROTIC ---
-    function playSound() {
-        try {
-            const ctx = new (window.AudioContext || window.webkitAudioContext)();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.frequency.value = Math.random() * 100 + 80;
-            osc.type = 'sine';
-            gain.gain.setValueAtTime(0.05, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
-            osc.start(ctx.currentTime);
-            osc.stop(ctx.currentTime + 0.5);
-        } catch(e) {}
-    }
-
-    document.addEventListener('click', playSound);
 
 </script>
 
