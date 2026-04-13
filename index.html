@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Together Again [UNCENSORED]</title>
+    <title>Together Again</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -11,7 +11,7 @@
             padding: 0;
             overflow: hidden;
             font-family: 'Arial', sans-serif;
-            background: black;
+            background: #000;
         }
 
         .screen {
@@ -27,26 +27,22 @@
             padding: 20px;
         }
 
-        .hidden {
-            display: none !important;
-        }
+        .hidden { display: none !important; }
 
-        .character-container {
+        .img-container {
             height: 55%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #111;
             width: 90%;
+            border: 3px solid #ff0066;
             border-radius: 15px;
-            border: 3px solid red;
             overflow: hidden;
+            box-shadow: 0 0 40px #ff0066;
+            background: #111;
         }
 
-        .char-img {
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: contain;
+        .scene-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .text-box {
@@ -58,7 +54,6 @@
             color: white;
             font-size: 18px;
             line-height: 1.6;
-            box-shadow: 0 0 30px rgba(255, 0, 128, 0.6);
         }
 
         .choice-btn {
@@ -66,144 +61,38 @@
             padding: 15px 30px;
             border-radius: 50px;
             font-weight: bold;
-            font-size: 16px;
-            transition: all 0.3s;
             border: none;
             cursor: pointer;
-        }
-
-        .choice-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px currentColor;
-        }
-
-        .warning-text {
-            color: #ff0055;
-            text-shadow: 0 0 10px #ff0055;
-            animation: pulse 1s infinite;
-            font-size: 40px;
-            font-weight: bold;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-<!-- WARNING SCREEN -->
-<div id="warningScreen" class="screen">
-    <h1 class="text-7xl font-black mb-4 text-red-600">⚠️ DILARANG MASUK ⚠️</h1>
-    <div class="warning-text mb-4">🔞 KONTEN SANGAT EKSPLIT / PORNO 🔞</div>
-    <p class="text-xl text-gray-300 max-w-2xl mb-8">
-        GAME INI BERISI GAMBAR TELANJANG DAN AKTIVITAS SEKSUAL YANG JELAS.<br>
-        HANYA UNTUK MATA DEWASA.<br>
-        MASUK = SETUJU.
-    </p>
-    <button id="enterBtn" class="px-10 py-5 bg-red-700 rounded-full text-2xl font-bold text-white hover:bg-red-900 transition">
-        🍆 SAYA MAU LIHAT YANG ASLI 🍆
+<div id="startScreen" class="screen">
+    <h1 class="text-6xl font-bold text-red-600 mb-4">🔞 TOGETHER AGAIN 🔞</h1>
+    <button id="startBtn" class="px-10 py-5 bg-red-700 text-white text-2xl rounded-full">
+        MASUK & LIHAT GAMBAR
     </button>
 </div>
 
-<!-- GAME AREA -->
 <div id="gameArea" class="screen hidden">
-    
-    <!-- TEMPAT GAMBAR -->
-    <div class="character-container">
-        <img id="charImage" class="char-img" src="" alt="Scene">
+    <div class="img-container">
+        <img id="sceneImage" class="scene-img" src="" alt="Scene">
     </div>
-
-    <!-- TEMPAT CERITA -->
     <div class="text-box">
-        <p id="storyText">Loading...</p>
-        <div id="choices" class="mt-6">
-            <!-- Pilihan -->
-        </div>
+        <p id="storyText"></p>
+        <div id="choices"></div>
     </div>
-
 </div>
 
 <script>
-    // --- DATA GAME DENGAN GAMBAR SEX ASLI ---
-    const scenes = [
-        {
-            text: "📹 **LIVE CAM** 📹\n\nKau terbangun dalam kegelapan. Tubuhmu telanjang bulat. Kamera merekam setiap lekuk indahmu. Di depanmu, gambar itu muncul... sosok yang sangat seksi dan siap menyakitimu sekaligus memuaskanmu.",
-            image: "https://i.imgur.com/8bNnNnQ.jpg", // Gambar sensual/telanjang
-            choices: [
-                { text: "Ahhh... jangan lihat... aku malu...", next: 1 },
-                { text: "Lakukan... aku ingin milikmu...", next: 2 }
-            ]
-        },
-        {
-            text: "😈 **FIRST PENETRATION** 😈\n\nGambar di depan matamu semakin jelas. Gerakan itu mulai dimulai. Masuk perlahan lalu tiba-tiba didorong keras. 'Ahhh!!' teriakmu tak kuasa menahan nikmat. Cairan mulai membasahi seluruh lantai.",
-            image: "https://i.imgur.com/9X7yY8H.jpg", // Gambar aksi seksual
-            choices: [
-                { text: "Teruskan... lebih dalam!!", next: 3 },
-                { text: "Aku mau lebih banyak lagi!!", next: 4 }
-            ]
-        },
-        {
-            text: "⛓️ **HARDCORE MODE** ⛓️\n\nPosisi demi posisi dicoba. Mulai dari depan, belakang, samping, sampai tak sadarkan diri. Suara desahan, cipratan air, dan erangan puas terdengar bersahutan. Ini bukan main-main, ini beneran bercinta sampai hancur.",
-            image: "https://i.imgur.com/4Z5aA5L.jpg", // Gambar group/hardcore
-            choices: [
-                { text: "🔞 TAMPILKAN YANG PALING LIHAT", next: 5 }
-            ]
-        },
-        {
-            text: "💦 **FINAL CLIMAX** 💦\n\nSemua lubang terisi penuh. Energi habis tak bersisa. Tubuh lemas namun puas luar biasa. Cairan putih membanjiri seluruh tubuhmu sebagai tanda kepemilikan mutlak. 'TOGETHER AGAIN... selamanya menjadi budak nafsu.'",
-            image: "https://i.imgur.com/5KQjZ8Y.jpg", // Gambar akhir cumshot
-            choices: [
-                { text: "✅ FULL CONTENT UNLOCKED", next: -1 }
-            ]
-        }
-    ];
+    // ==============================================
+    // GAMBAR SUDAH DI MASUKIN LANGSUNG KE DALAM KODE
+    // ==============================================
+    
+    // Gambar 1: Pose Seksi
+    const img1 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAkACQAAD/4QBYRXhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAZKADAAQAAAABAAAAZAAAAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/AABEIAMIBAwMBEQACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAADBAECBQYAB//EAEYQAAICAQMDAwUDBQQGAAAAAAECAAEDESITEiEBUWEycYEjobEHFBKhMhVDUvD/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAD/EACcQAQACAQMAAwAAAAAAAAAAAAABAhEDIQQSMQVh/9oADAMBAAIRAxEAPwD/AD/6KAZ/8Q9R/8A/9k=";
 
-    // --- LOGIC ---
-    const warningScreen = document.getElementById('warningScreen');
-    const gameArea = document.getElementById('gameArea');
-    const storyText = document.getElementById('storyText');
-    const charImage = document.getElementById('charImage');
-    const choicesDiv = document.getElementById('choices');
-
-    document.getElementById('enterBtn').addEventListener('click', () => {
-        warningScreen.classList.add('hidden');
-        gameArea.classList.remove('hidden');
-        loadScene(0);
-    });
-
-    function loadScene(index) {
-        if(index === -1) {
-            storyText.innerHTML = "✅ <span class='text-green-400 font-bold text-2xl'>SEMUA GAMBAR AKTIF</span> ✅<br><br>🔞 MODE: PORNO / UNCENSORED / REAL<br>🖼️ QUALITY: HIGH RESOLUTION<br><br>PROTOCOL ORION ACTIVATED.";
-            charImage.src = "https://i.imgur.com/7vRjJjD.jpg";
-            choicesDiv.innerHTML = '';
-            return;
-        }
-
-        const scene = scenes[index];
+    // Gambar 2: Adegan Panas
+    const img2 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAkACQAAD/4QBYRXhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAZKADAAQAAAABAAAAZAAAAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE
         
-        // Ganti Gambar
-        charImage.style.opacity = 0;
-        setTimeout(() => {
-            charImage.src = scene.image;
-            charImage.onload = () => { charImage.style.opacity = 1; }
-        }, 200);
-
-        storyText.innerText = scene.text;
-        choicesDiv.innerHTML = '';
-
-        scene.choices.forEach(choice => {
-            const btn = document.createElement('button');
-            btn.innerText = choice.text;
-            btn.className = "choice-btn bg-pink-900 text-pink-300 border-2 border-pink-500";
-            btn.addEventListener('click', () => loadScene(choice.next));
-            choicesDiv.appendChild(btn);
-        });
-    }
-
-</script>
-
-</body>
-</html>
