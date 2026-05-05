@@ -1,155 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<title>ORION MASTER</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body { background: #000; color: #0f0; font-family: monospace; padding: 15px; }
-h1 { text-align: center; text-shadow: 0 0 15px red; color: red; font-size: 22px; }
-.info { text-align: center; color: yellow; }
-.input {
-    width: 100%;
-    background: #111;
-    border: 2px solid red;
-    color: white;
-    padding: 15px;
-    font-size: 18px;
-    margin: 10px 0;
-    border-radius: 10px;
-    box-sizing: border-box;
-}
-button { 
-    background: #111; 
-    color: red; 
-    border: 2px solid red; 
-    padding: 20px; 
-    margin: 12px 0; 
-    font-size: 20px; 
-    width: 100%;
-    border-radius: 10px;
-    font-weight: bold;
-}
-button:active { background: red; color: black; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION - AUTO SCAN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        body { font-family: 'Orbitron', monospace; background: #000; }
+        .glow { box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff0080; }
+        .scan-line {
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 255, 0, 0.2), transparent);
+            animation: scan 4s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+    </style>
 </head>
-<body>
+<body class="bg-black text-green-500 min-h-screen flex items-center justify-center p-4">
 
-<h1>💀 ORION NUKLIR SYSTEM 💀</h1>
-<p class="info">🔗 TARGET: 6285640914382</p>
+    <div class="w-full max-w-md border border-green-700 rounded-lg p-6 bg-gray-900/80 relative overflow-hidden glow">
+        <div class="scan-line"></div>
+        
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-black text-green-500">ORION 1.0</h1>
+            <p class="text-xs text-green-600">[SYSTEM: AUTO_FACE_SCANNER]</p>
+        </div>
 
-<input type="text" id="target" class="input" placeholder="📱 MASUKIN NOMOR KORBAN...">
+        <!-- AREA GAMBAR ORANG -->
+        <div class="mb-6 border border-green-600 rounded overflow-hidden h-64 relative bg-black">
+            <img id="targetImage" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                 class="w-full h-full object-cover"
+                 alt="TARGET">
+            <div class="absolute top-2 right-2 bg-red-600 text-white text-xs px-2 py-1 rounded">LIVE</div>
+        </div>
 
-<button onclick="serangKeras()">💣 ATTACK MAX (BUG WA)</button>
-<button onclick="bukaCam()">📸 CAMERA DEPAN SNAP</button>
-<button onclick="lacakPos()">📍 LACAK LOKASI</button>
-<button onclick="emailScan()">📧 SCAN EMAIL</button>
-<button onclick="hancurin()">🔥 RUSAK HP (NUKLIR)</button>
+        <div id="resultBox" class="p-4 rounded bg-black/80 h-48 overflow-y-auto font-mono text-xs">
+            <p id="logText">> SISTEM MEMULAI OTOMATIS...</p>
+        </div>
 
-<script>
-// ==============================================
-// 🔗 NOMOR WA KAMU
-// ==============================================
-const WA_ME = "6285640914382";
+    </div>
 
-// ==============================================
-// 💣 1. ATTACK MAX (BUG WHATSAPP)
-// ==============================================
-function serangKeras() {
-    let no = document.getElementById('target').value;
-    
-    // SPAM ALERT & LOOP BERAT
-    let loop = setInterval(() => {
-        // BANJIRI MEMORI
-        for(let i=0; i<999999; i++){
-            console.log("%c ORION_BOMBING ", "background:red; color:white; font-size:50px");
+    <script>
+        const logText = document.getElementById('logText');
+        const images = [
+            "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500", // Cowok
+            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500", // Cewek
+            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500", // Cowok
+            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500"  // Cewek
+        ];
+
+        // Pilih gambar acak saat dibuka
+        window.onload = function() {
+            const randomImg = images[Math.floor(Math.random() * images.length)];
+            document.getElementById('targetImage').src = randomImg;
+            startProcess();
         }
-        // BUKA TAB BARU TERUS
-        window.open("about:blank", '_blank');
-    }, 10);
 
-    // MATIIN LOOP SETELAH BEBERAPA DETIK
-    setTimeout(() => { clearInterval(loop); }, 3000);
-
-    let msg = "⚠️ *ORION ATTACK MAX!*\n" +
-              "TARGET: "+no+"\n\n" +
-              "💣 STATUS: WHATSAPP SEDANG DI-BOMBING!\n" +
-              "💣 EFEK: ERROR PARAH, KELUAR SENDIRI, & LAG!\n" +
-              "✅ SISTEM SEDANG MENYERANG!";
-    
-    sendWA(msg);
-    alert("🚀 MODE MAX AKTIF! WA DIA ERROR!");
-}
-
-// ==============================================
-// 📸 2. CAMERA
-// ==============================================
-function bukaCam() {
-    let no = document.getElementById('target').value;
-    let msg = "📸 *ORION CAM ACTIVE!\nTARGET: "+no+"\n✅ KAMERA DEPAN TERBUKA & FOTO!";
-    sendWA(msg);
-}
-
-// ==============================================
-// 📍 3. LACAK
-// ==============================================
-function lacakPos() {
-    let no = document.getElementById('target').value;
-    let lat = (-6.175 + Math.random() * 0.1).toFixed(6);
-    let lng = (106.827 + Math.random() * 0.1).toFixed(6);
-    let maps = "https://www.google.com/maps?q="+lat+","+lng;
-    
-    let data = "📍 *ORION LOCATION!*\nTARGET: "+no+"\n🌍 Lat: "+lat+"\n🌍 Lng: "+lng+"\n🗺️ LINK: "+maps;
-    sendWA(data);
-}
-
-// ==============================================
-// 📧 4. EMAIL
-// ==============================================
-function emailScan() {
-    let no = document.getElementById('target').value;
-    let msg = "📧 *ORION EMAIL*\nTARGET: "+no+"\n✅ EMAIL: "+no+"@gmail.com";
-    sendWA(msg);
-}
-
-// ==============================================
-// 🔥 5. RUSAK HP (NUKLIR MODE)
-// ==============================================
-function hancurin() {
-    let no = document.getElementById('target').value;
-
-    // INI YANG BIKIN HP PANAS & LEMOT PARAH
-    // INFINITE LOOP TANPA HENTI
-    setTimeout(() => {
-        while(true) {
-            // MEMAKAN CPU SAMPE 100%
-            new Function(`
-                for(let i=0; i<999999999; i++){
-                    console.log("ORION_DESTROYING_SYSTEM");
-                }
-            })();
+        function log(text, delay) {
+            setTimeout(() => {
+                logText.innerHTML += `<br>> ${text}`;
+                document.getElementById('resultBox').scrollTop = document.getElementById('resultBox').scrollHeight;
+            }, delay);
         }
-    }, 1000);
 
-    let msg = "💀 *ORION NUKLIR ACTIVE!*\n" +
-              "TARGET: "+no+"\n\n" +
-              "🔥 STATUS: CPU OVERLOAD 100%!\n" +
-              "🔥 HP AKAN PANAS, MACET, & LEMOT PARAH!\n" +
-              "✅ SISTEM RUSAK BERJALAN!";
-    
-    sendWA(msg);
-    alert("💀 MODE NUKLIR AKTIF! HP DIA RUSAK!");
-}
+        function startProcess() {
+            log("[+] GAMBAR TERDETEKSI...", 1000);
+            log("[+] ANALISA WAJAH DIMULAI...", 2000);
+            log("[+] MENCOCOKAN DENGAN DATABASE...", 3500);
+            log("[+] MENGAMBIL DATA PRIBADI...", 5000);
+            log("[+] MENCARI LOKASI...", 6500);
 
-// ==============================================
-// 📲 KIRIM KE WA
-// ==============================================
-function sendWA(text) {
-    let encode = encodeURIComponent(text);
-    window.open("https://wa.me/"+WA_ME+"?text="+encode, '_blank');
-}
+            setTimeout(() => {
+                log("<br>================================", 8000);
+                log("✅ [DATA BERHASIL DIAMBIL]", 8500);
+                log(`👤 NAMA: ${generateName()}`, 9000);
+                log(`📍 LOKASI: ${generateLocation()}`, 9500);
+                log(`🆔 NO KTP: ${generateID()}`, 10000);
+                log(`📱 NO HP: ${generatePhone()}`, 10500);
+                log("================================", 11000);
+                log("⚠️  DATA SUDAH MASUK SISTEM", 11500);
+            }, 7000);
+        }
 
-</script>
+        // FUNCTION BUAT DATA PALING ASLI
+        function generateName() {
+            const names = ["ANDI SETIAWAN", "SARI MELATI", "BUDI HARTO", "RINA AYU", "DAVID CHRISTIAN", "SITI NURHALIZA"];
+            return names[Math.floor(Math.random() * names.length)];
+        }
+        function generateLocation() {
+            const locs = ["JAKARTA SELATAN", "BANDUNG", "SURABAYA", "MEDAN", "MAKASSAR", "YOGYAKARTA"];
+            return locs[Math.floor(Math.random() * locs.length)];
+        }
+        function generateID() {
+            return Math.floor(Math.random() * 9000000000000000) + 1000000000000000;
+        }
+        function generatePhone() {
+            return "+628" + Math.floor(Math.random() * 900000000) + 100000000;
+        }
+    </script>
 
 </body>
 </html>
+
